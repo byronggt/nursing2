@@ -1,7 +1,7 @@
 # Dr. Byron González
 # http://www.byrong.tk
 
-# Comparación de niveles de estrogeno en tres grupos de mujeres
+# Comparación de niveles de estrógeno en tres grupos de mujeres
 
 # Colocar en memoria las bibliotecas a emplear
 if(!require(ggplot2)){install.packages("ggplot2")}
@@ -37,6 +37,7 @@ check_model(aov1)
 check_normality(aov1)
 
 # Solicitar la prueba múltiple de medias bajo el criterio de Tukey
+pr.medias<-HSD.test(aov1, "edad", console = T) ; pr.medias
 
 
 
