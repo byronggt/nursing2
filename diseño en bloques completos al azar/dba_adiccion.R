@@ -30,21 +30,22 @@ ggplot(adiccion, aes(x=nivelad, y=dias))+
   facet_wrap(~edad)
 
 # Realizar el análisis de varianza
-aov<-lm(dias~nivelad+edad)
-adiccion$predichos<-aov$fitted.values
-adiccion$residuos<-aov$residuals
+model<-lm(dias~nivelad+edad)
+adiccion$predichos<-model$fitted.values
+adiccion$residuos<-model$residuals
 head(adiccion)
-anova(aov)
+model1<-aov(dias~nivelad+edad)
 
 # Revisar los supuestos del Andeva
-plot(aov,1)
-plot(aov,2)
+plot(model,1)
+plot(model,2)
 windows(10,10)
-check_model(aov)
-check_normality(aov)
+check_model(model)
+check_normality(model)
 
 # Obtener las medias de días a la recaída
 # de acuerdo al nivel de adicción
+medias<-HSD.test(model1, "nivelad", console = T);medias
 
 
 
