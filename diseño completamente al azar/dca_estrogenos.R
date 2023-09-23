@@ -24,6 +24,14 @@ ggplot(estrogenos, aes(x=as.factor(edad),y=e4)) +
   theme_minimal() +
   xlab("Edad en años") +
   ylab("Nivel de estrógeno en pg/mt")
+
+ggplot(estrogenos, aes(x=as.factor(edad),y=e4)) +
+  geom_dotplot(binaxis="y", stackdir="center",fill="#FF00FF")+
+  xlab("Edad en años") +
+  ylab("Nivel de estrógeno en pg/mt")
+
+
+
   
 # Solicitar el análisis de la varianza
 aov1<-lm(e4~edad)
