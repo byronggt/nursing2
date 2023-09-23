@@ -30,12 +30,14 @@ ggplot(estrogenos, aes(x=as.factor(edad),y=e4)) +
   xlab("Edad en años") +
   ylab("Nivel de estrógeno en pg/mt")
 
-
-
-  
 # Solicitar el análisis de la varianza
 aov1<-lm(e4~edad)
+names(aov1)
 anova(aov1)
+estrogenos$predichos<-aov1$fitted.values
+estrogenos$residuos<-aov1$residuals
+head(estrogenos)
+tail(estrogenos)
 
 # Revisar los supuestos del Andeva
 plot(aov1,1)
