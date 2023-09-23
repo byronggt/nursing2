@@ -31,20 +31,22 @@ ggplot(estrogenos, aes(x=as.factor(edad),y=e4)) +
   ylab("Nivel de estrógeno en pg/ml")
 
 # Solicitar el análisis de la varianza
-aov1<-lm(e4~edad)
-names(aov1)
-anova(aov1)
-estrogenos$predichos<-aov1$fitted.values
-estrogenos$residuos<-aov1$residuals
+model1<-lm(e4~edad)
+names(model1)
+anova(model1)
+estrogenos$predichos<-model1$fitted.values
+estrogenos$residuos<-model1$residuals
 head(estrogenos)
 tail(estrogenos)
+andeva<-aov(e4~edad)
+
 
 # Revisar los supuestos del Andeva
-plot(aov1,1)
-plot(aov1,2)
+plot(model1,1)
+plot(model1,2)
 windows(10,10)
-check_model(aov1)
-check_normality(aov1)
+check_model(model1)
+check_normality(model1)
 
 # Solicitar la prueba múltiple de medias bajo el criterio de Tukey
-pr.medias<-HSD.test(aov1, "edad", console = T) ; pr.medias
+pr.medias<-HSD.test(andeva, "edad", console = T) ; pr.medias
