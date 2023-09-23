@@ -13,5 +13,25 @@ if(!require(readxl)){install.packages("readxl")}
 
 # Importar el archivo "adiccion.xlsx"
 adiccion<-read_excel("adiccion.xlsx")
+str(adiccion)
+adiccion$nivelad<-as.factor(adiccion$nivelad)
+adiccion$edad<-as.factor(adiccion$edad)
+head(adiccion)
+attach(adiccion)
+
+# Graficar el comportamiento de los días hasta la recaída
+# de acuerdo al nivel de adicción
+boxplot(dias~nivelad)
+
+ggplot(adiccion, aes(x=nivelad, y=dias))+
+  geom_boxplot()+
+  xlab("Nivel de adicción")+
+  ylab("Días a la recaída")
+
+
+
+
+
+
 
 
