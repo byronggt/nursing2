@@ -16,6 +16,11 @@ attach(estrogenos)
 boxplot(e4~edad)
 
 # Graficar el comportamiento mediante ggplot
-
+ggplot(estrogenos, aes(x=as.factor(edad),y=e4)) +
+  geom_boxplot() +
+  theme_minimal() +
+  xlab("Edad en años") +
+  ylab("Nivel de estrógeno en pg/mt")
+  
 
 
