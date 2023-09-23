@@ -23,12 +23,12 @@ ggplot(estrogenos, aes(x=as.factor(edad),y=e4)) +
   geom_boxplot() +
   theme_minimal() +
   xlab("Edad en años") +
-  ylab("Nivel de estrógeno en pg/mt")
+  ylab("Nivel de estrógeno en pg/ml")
 
 ggplot(estrogenos, aes(x=as.factor(edad),y=e4)) +
   geom_dotplot(binaxis="y", stackdir="center",fill="#FF00FF")+
   xlab("Edad en años") +
-  ylab("Nivel de estrógeno en pg/mt")
+  ylab("Nivel de estrógeno en pg/ml")
 
 # Solicitar el análisis de la varianza
 aov1<-lm(e4~edad)
@@ -48,6 +48,3 @@ check_normality(aov1)
 
 # Solicitar la prueba múltiple de medias bajo el criterio de Tukey
 pr.medias<-HSD.test(aov1, "edad", console = T) ; pr.medias
-
-
-
