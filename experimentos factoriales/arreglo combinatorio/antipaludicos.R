@@ -74,3 +74,15 @@ farma %>%
 farma %>%
   group_by(cloroquina) %>%
   summarise_at(vars(pcurados), list(name = mean))
+
+# De manera ilustrativa se presenta las pruebas de medias
+# para la interacción de pirimetamina*cloroquina
+
+pr.medias1<-HSD.test(pcurados,pirimetamina, DFerror = 12, MSerror = 6.199); pr.medias1
+pr.medias2<-HSD.test(pcurados,cloroquina, DFerror = 12, MSerror = 6.199); pr.medias2
+
+outFactorial<-LSD.test(model, c("pirimetamina", "cloroquina")); outFactorial
+
+
+
+
