@@ -50,7 +50,9 @@ plot(model1,2)
 residuos<-residuals(model1)
 check_model(model1)
 check_normality(model1)
+bartlett.test(residuos~interaction(shock,sexo),hm)
 
-
+# Prueba de medias bajo el criterio de Tukey
+pr.medias<-HSD.test(superficie, shock, DFerror =9 , MSerror =1.727 ); pr.medias
 
 
