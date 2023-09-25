@@ -77,14 +77,14 @@ bartlett.test(pcurados ~ interaction(pirimetamina,cloroquina))
 # Debido a que no hay diferencias significativas
 # solamente se presentan las medias para cada fármaco
 
-farma %>%
-  group_by(pirimetamina) %>%
-  summarise_at(vars(pcurados), list(name = mean))
+farma %>% 
+  group_by(pirimetamina) %>% 
+  get_summary_stats(pcurados, type="mean_sd")
 
+farma %>% 
+  group_by(cloroquina) %>% 
+  get_summary_stats(pcurados, type="mean_sd")
 
-farma %>%
-  group_by(cloroquina) %>%
-  summarise_at(vars(pcurados), list(name = mean))
 
 # De manera ilustrativa se presenta las pruebas de medias
 # para la interacción de pirimetamina*cloroquina
