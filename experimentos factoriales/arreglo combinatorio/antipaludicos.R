@@ -79,7 +79,7 @@ bartlett.test(pcurados ~ interaction(pirimetamina,cloroquina))
 
 farma %>% 
   group_by(pirimetamina) %>% 
-  get_summary_stats(pcurados, type="mean_sd")
+  get_summary_stats(pcurados, type="full")
 
 farma %>% 
   group_by(cloroquina) %>% 
