@@ -10,6 +10,7 @@
 # Colocar en memoria las bibliotecas a emplear
 
 if(!require(ggplot2)){install.packages("ggplot2")}
+if(!require(car)){install.packages("car")}
 if(!require(tidyverse)){install.packages("tidyverse")}
 if(!require(agricolae)){install.packages("agricolae")}
 if(!require(performance)){install.packages("performance")}
@@ -63,6 +64,8 @@ ggboxplot(farma,
 
 model<-aov(pcurados~pirimetamina+cloroquina+pirimetamina*cloroquina+parasito)
 summary(model)
+names(model)
+residuos<-residuals(model)
 
 # Revisar los supuestos del modelo
 
@@ -71,8 +74,9 @@ plot(model,2)
 windows(10,10)
 check_model(model)
 check_normality(model)
-bartlett.test(pcurados ~ interaction(pirimetamina,cloroquina))
 
+# Usar los residuos para la prueba de Bartlett
+bartlett.test(residuos ~ interaction(pirimetamina,cloroquina))
 
 # Debido a que no hay diferencias significativas
 # solamente se presentan las medias para cada fármaco
