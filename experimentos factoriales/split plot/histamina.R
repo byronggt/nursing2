@@ -16,5 +16,41 @@ if(!require(ggpubr)){install.packages("ggpubr")}
 if(!require(readxl)){install.packages("readxl")}
 
 # Importar el archivo "histamina.xlsx"
-histamina<-read_excel("histamina.xlsx")
+hm<-read_excel("histamina.xlsx")
+head(hm)
+tail(hm)
+hm$sexo<-as.factor(hm$sexo)
+hm$animal<-as.factor(hm$animal)
+hm$shock<-as.factor(hm$shock)
+
+# Graficar la interacción
+
+ggboxplot(hm,
+          x="sexo",
+          y="superficie",
+          color = "shock")
+
+ggboxplot(hm,
+          x="shock",
+          y="superficie",
+          color = "sexo")
+
+# Realizar el análisis de varianza
+attach(hm)
+model<-aov(superficie~shock+Error(animal/shock)+sexo+shock:sexo)
+summary(model)
+
+# Calcular un solo residuo
+model1<-aov(superficie~shock*sexo+animal/shock)
+summary(model1)
+
+# Revisión de los supuestos del modelo
+plot(model1,1)
+plot(model1,2)
+residuos<-residuals(model1)
+check_model(model1)
+check_normality(model1)
+
+
+
 
