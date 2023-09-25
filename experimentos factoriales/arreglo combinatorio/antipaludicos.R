@@ -13,6 +13,7 @@ if(!require(ggplot2)){install.packages("ggplot2")}
 if(!require(tidyverse)){install.packages("tidyverse")}
 if(!require(agricolae)){install.packages("agricolae")}
 if(!require(performance)){install.packages("performance")}
+if(!require(ggpubr)){install.packages("ggpubr")}
 if(!require(readxl)){install.packages("readxl")}
 
 # Importar el archivo "antipaludicos.xlsx"
@@ -48,18 +49,28 @@ farma %>%
   ylab("Concentraciones de cloroquina")+
   labs(colour="Números de pacientes curados")
 
+ggboxplot(farma,
+          x="pirimetamina",
+          y="pcurados",
+          color="cloroquina")
+
+ggboxplot(farma,
+          x="cloroquina",
+          y="pcurados",
+          color="pirimetamina")
+
 # Realizar el análisis de varianza
 
 model<-aov(pcurados~pirimetamina+cloroquina+pirimetamina*cloroquina+parasito)
 summary(model)
 
 # Revisar los supuestos del modelo
+
 plot(model,1)
 plot(model,2)
 windows(10,10)
 check_model(model)
 check_normality(model)
-head(farma)
 bartlett.test(pcurados ~ interaction(pirimetamina,cloroquina))
 
 
