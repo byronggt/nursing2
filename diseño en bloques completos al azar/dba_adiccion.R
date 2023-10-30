@@ -42,7 +42,7 @@ plot(model,2)
 windows(10,10)
 check_model(model)
 check_normality(model)
-bartlett.test(model$residual, nivelad)
+bartlett.test(model$residuals, nivelad)
 
 # Obtener las medias de días a la recaída
 # de acuerdo al nivel de adicción
