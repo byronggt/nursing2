@@ -55,8 +55,3 @@ bartlett.test(residuos~interaction(shock,sexo),hm)
 # Prueba de medias bajo el criterio de Tukey
 pr.medias<-HSD.test(superficie, shock, DFerror =9 , MSerror =1.727 ); pr.medias
 
-
-# Pendiente agregar análisis considerando shock*animal
-# como término aleatorio
-
-
